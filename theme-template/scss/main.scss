@@ -1,0 +1,14 @@
+// Use infrastructure
+@use 'fonts';
+
+// Use base elements
+@use 'base';
+
+// Use blocks
+@use '../blocks/all' as blocks;
+
+// Render base elements
+@include base.render;
+
+// Render blocks
+@include blocks.render;

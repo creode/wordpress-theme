@@ -1,0 +1,24 @@
+// Maximum width of negative space (screen space not conveying information), e.g. background color bleed
+$maximum-width-outer: var(--wp--style--global--wide-size);
+
+// Maximum width of positive space (screen space conveying information)
+$maximum-width: var(--wp--style--global--content-size);
+
+// Breakpoints
+$breakpoint-medium: 760px;
+$breakpoint-large: 990px;
+
+// Spacing
+$space-vertical: var(--wp--style--root--padding-bottom);
+$space-horizontal: var(--wp--style--root--padding-right);
+$space-top: var(--wp--style--root--padding-top);
+$space-right: var(--wp--style--root--padding-right);
+$space-bottom: var(--wp--style--root--padding-bottom);
+$space-left: var(--wp--style--root--padding-left);
+
+//Fonts
+$font-standard: var(--wp--preset--font-family--standard);
+
+// Colors
+$color-a: var(--wp--preset--color--a);
+$color-b: var(--wp--preset--color--b);

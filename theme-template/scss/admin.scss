@@ -1,0 +1,18 @@
+// Use infrastructure
+@use 'fonts';
+
+// Use base elements
+@use 'base';
+
+// Use blocks
+@use '../blocks/all' as blocks;
+
+.edit-post-visual-editor,
+.edit-site-style-book__example-preview,
+.block-editor-iframe__body {
+	// Render base elements
+	@include base.render;
+
+	// Render blocks
+	@include blocks.render;
+}
