@@ -7,31 +7,35 @@
 
 namespace Creode_Theme;
 
-use enshrined\svgSanitize\Helper;
-
 /**
  * Handles the installation of theme files.
  */
 class Installer {
 
 	/**
-	 * The directory path to install theme files.
+	 * The theme directory name to install theme files.
 	 *
 	 * @var string
 	 */
-	private $theme_path;
+	private $theme_name;
 
 	/**
-	 * Installs theme files to a specified path.
+	 * Initializes the object with a theme name.
 	 *
-	 * @param string|null $theme_path (Optional) The directory path to install theme files. If null on unspecified the active theme will be used.
+	 * @param string|null $theme_name (Optional) The theme directory name. If null or unspecified the active theme will be used.
 	 */
-	public function __construct( string|null $theme_path = null ) {
-		if ( is_null( $theme_path ) ) {
-			$theme_path = get_stylesheet_directory();
+	public function __construct( string|null $theme_name = null ) {
+		if ( is_null( $theme_name ) ) {
+			$theme_name = get_stylesheet();
 		}
 
-		$this->theme_path = $theme_path;
+		$this->theme_name = $theme_name;
+	}
+
+	/**
+	 * Installs theme files.
+	 */
+	public function install() {
 		$this->copy_theme_files();
 	}
 
@@ -39,6 +43,6 @@ class Installer {
 	 * Copies theme files from the theme-template directory into the specified location.
 	 */
 	private function copy_theme_files() {
-		Helpers::copy_directory( __DIR__ . '/../theme-template', $this->theme_path );
+		Helpers::copy_directory( __DIR__ . '/../theme-template', get_theme_root() . '/' . $this->theme_name );
 	}
 }
