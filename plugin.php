@@ -11,4 +11,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once __DIR__ . '/includes/class-helpers.php';
+require_once __DIR__ . '/includes/class-file-string-replacer.php';
 require_once __DIR__ . '/includes/class-installer.php';
