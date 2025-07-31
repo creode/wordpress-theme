@@ -15,17 +15,25 @@ use WP_CLI;
 abstract class Command_Base {
 
 	/**
+	 * The prefix to be added to commands.
+	 *
+	 * @var string
+	 */
+	private $name_prefix = 'creode-theme:';
+
+	/**
 	 * Returns the name of the command.
 	 * This should be a hyphen separated string.
-	 * This should be typed immediately after the wp command.
-	 * 
+	 * This value will be prefixed with the value of the $name_prefix property.
+	 * This should be typed immediately after the wp command to execute the command.
+	 *
 	 * @return string The name of the command.
 	 */
 	abstract protected function name(): string;
 
 	/**
 	 * This class must be invocable.
-	 * 
+	 *
 	 * @param array $args An array of arguments might be provided.
 	 */
 	abstract public function __invoke( array $args = array() );
@@ -43,6 +51,6 @@ abstract class Command_Base {
 		}
 
 		$instance = new static();
-		WP_CLI::add_command( $instance->name(), static::class );
+		WP_CLI::add_command( $instance->name_prefix . $instance->name(), static::class );
 	}
 }

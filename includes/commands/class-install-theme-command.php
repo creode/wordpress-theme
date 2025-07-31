@@ -19,7 +19,7 @@ class Install_Theme_Command extends Command_Base {
 	 * {@inheritdoc}
 	 */
 	protected function name(): string {
-		return 'install-theme';
+		return 'install';
 	}
 
 	/**
