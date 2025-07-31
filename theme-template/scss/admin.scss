@@ -1,11 +1,11 @@
-// Use infrastructure
+// Use fonts
 @use 'fonts';
 
 // Use base elements
 @use 'base';
 
 // Use blocks
-@use '../blocks/all' as blocks;
+@use '/blocks/all' as blocks;
 
 .edit-post-visual-editor,
 .edit-site-style-book__example-preview,

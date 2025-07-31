@@ -17,8 +17,8 @@ export default defineConfig(
 				rollupOptions: {
 					// overwrite default .html entry
 					input: {
-						main: resolve(__dirname, 'main.js'),
-						admin: resolve(__dirname, 'admin.js'),
+						main: resolve(__dirname, 'vite-entry-points/main.js'),
+						admin: resolve(__dirname, 'vite-entry-points/admin.js'),
 					}
 				},
 				outDir: 'dist'

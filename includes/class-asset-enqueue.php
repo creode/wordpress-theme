@@ -25,16 +25,16 @@ final class Asset_Enqueue {
 	 * Initializes the process.
 	 */
 	public static function init() {
-		if ( ! is_null( static::$instance ) ) {
+		if ( ! is_null( self::$instance ) ) {
 			return;
 		}
 
-		static::$instance = new static();
+		self::$instance = new self();
 	}
 
 	/**
 	 * An array of Manifest objects.
-	 * 
+	 *
 	 * @var Manifest[]
 	 */
 	private $manifests = array();
@@ -70,8 +70,8 @@ final class Asset_Enqueue {
 		);
 
 		foreach ( $theme_paths as $index => $theme_path ) {
-			$manifest_path = $theme_path . '/dist/.vite/manifest.json';
-			$assets_base_uri = $theme_uris[$index] . '/dist/assets';
+			$manifest_path   = $theme_path . '/dist/.vite/manifest.json';
+			$assets_base_uri = $theme_uris[ $index ] . '/dist/assets';
 
 			if ( ! is_readable( $manifest_path ) ) {
 				continue;
@@ -94,7 +94,7 @@ final class Asset_Enqueue {
 		add_action(
 			'wp_enqueue_scripts',
 			function () {
-				$this->enqueue_stylesheets( 'main.js' );
+				$this->enqueue_stylesheets( 'vite-entry-points/main.js' );
 			}
 		);
 	}
@@ -106,7 +106,7 @@ final class Asset_Enqueue {
 		add_action(
 			'admin_enqueue_scripts',
 			function () {
-				$this->enqueue_stylesheets( 'admin.js' );
+				$this->enqueue_stylesheets( 'vite-entry-points/admin.js' );
 			}
 		);
 	}
@@ -116,7 +116,7 @@ final class Asset_Enqueue {
 	 */
 	private function enqueue_editor_stylesheets() {
 		foreach ( $this->manifests as $manifest ) {
-			$style = $this->get_manifest_style( $manifest, 'admin.js' );
+			$style = $this->get_manifest_style( $manifest, 'vite-entry-points/admin.js' );
 
 			if ( is_null( $style ) ) {
 				continue;
@@ -128,7 +128,7 @@ final class Asset_Enqueue {
 
 	/**
 	 * Enqueues the stylesheet for all manifests based on a single entrypoint file name.
-	 * 
+	 *
 	 * @param string $entrypoint The entrypoint file name, relative to a theme root directory.
 	 */
 	private function enqueue_stylesheets( string $entrypoint ) {
@@ -139,14 +139,14 @@ final class Asset_Enqueue {
 				continue;
 			}
 
-			$asset = $manifest->getManifest()[$entrypoint];
+			$asset = $manifest->getManifest()[ $entrypoint ];
 			wp_enqueue_style( $asset['name'], $style['url'], array(), $style['hash'] );
 		}
 	}
 
 	/**
 	 * Returns stylesheet information for a given manifest and a given Vite entrypoint.
-	 * 
+	 *
 	 * @param Manifest $manifest The manifest to retrieve stylesheet information from.
 	 * @param string   $entrypoint The entrypoint file name, relative to a theme root directory.
 	 * @return array|null An array of stylesheet information. Null if this cannot be found.
