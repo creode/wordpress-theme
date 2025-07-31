@@ -20,7 +20,7 @@ require_once __DIR__ . '/includes/class-helpers.php';
 require_once __DIR__ . '/includes/class-file-string-replacer.php';
 require_once __DIR__ . '/includes/class-installer.php';
 require_once __DIR__ . '/includes/class-command-base.php';
-require_once __DIR__ . '/includes/commands/class-install-theme-command.php';
+require_once __DIR__ . '/includes/commands/all.php';
 require_once __DIR__ . '/includes/class-asset-enqueue.php';
 
 // Register commands.

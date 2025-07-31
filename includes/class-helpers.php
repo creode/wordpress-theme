@@ -10,7 +10,7 @@ namespace Creode_Theme;
 /**
  * Helper functions.
  */
-class Helpers {
+final class Helpers {
 
 	/**
 	 * Performs a deep copy of files.
