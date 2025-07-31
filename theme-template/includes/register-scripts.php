@@ -3,6 +3,7 @@
  * File for registering JavaScript.
  *
  * @package :THEME_LABEL
+ * @creode-wordpress-theme-version :THEME_PLUGIN_VERSION
  */
 
 /**

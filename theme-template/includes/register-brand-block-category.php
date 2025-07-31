@@ -3,6 +3,7 @@
  * File for registering a brand specific block category.
  *
  * @package :THEME_LABEL
+ * @creode-wordpress-theme-version :THEME_PLUGIN_VERSION
  */
 
 // Register the block category.

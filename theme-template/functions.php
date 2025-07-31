@@ -3,6 +3,7 @@
  * Theme functions file.
  *
  * @package :THEME_LABEL
+ * @creode-wordpress-theme-version :THEME_PLUGIN_VERSION
  */
 
 // Do not allow direct access to this file.

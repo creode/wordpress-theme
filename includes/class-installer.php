@@ -72,8 +72,9 @@ class Installer {
 	private function update_file_string_replacements() {
 		$this->file_string_replacer->update_replacements(
 			array(
-				':THEME_NAME'  => $this->theme_name,
-				':THEME_LABEL' => $this->theme_label,
+				':THEME_NAME'           => $this->theme_name,
+				':THEME_LABEL'          => $this->theme_label,
+				':THEME_PLUGIN_VERSION' => Helpers::get_plugin_version(),
 			)
 		);
 	}

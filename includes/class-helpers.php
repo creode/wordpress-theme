@@ -7,6 +7,8 @@
 
 namespace Creode_Theme;
 
+use Composer\InstalledVersions;
+
 /**
  * Helper functions.
  */
@@ -36,7 +38,7 @@ final class Helpers {
 
 			// If a sub-directory is found, recursively copy it's files.
 			if ( is_dir( $source_directory_path . '/' . $file ) ) {
-				static::copy_directory( $source_directory_path . '/' . $file, $destination_directory_path . '/' . $file, $merge, $file_post_processor );
+				self::copy_directory( $source_directory_path . '/' . $file, $destination_directory_path . '/' . $file, $merge, $file_post_processor );
 				continue;
 			}
 
@@ -57,5 +59,26 @@ final class Helpers {
 				);
 			}
 		}
+	}
+
+	/**
+	 * Retrieves the current version of this plugin.
+	 *
+	 * @return string The current version of this plugin.
+	 */
+	public static function get_plugin_version(): string {
+		$default_version = '1.0.0';
+
+		if ( ! class_exists( InstalledVersions::class ) ) {
+			return $default_version;
+		}
+
+		$version = InstalledVersions::getPrettyVersion( 'creode/wordpress-theme' );
+
+		if ( is_null( $version ) ) {
+			return $default_version;
+		}
+
+		return $version;
 	}
 }
