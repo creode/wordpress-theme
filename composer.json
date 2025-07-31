@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "composer/installers": "*"
+        "composer/installers": "*",
+        "idleberg/vite-manifest": "^1.1"
     },
     "config": {
         "allow-plugins": {
