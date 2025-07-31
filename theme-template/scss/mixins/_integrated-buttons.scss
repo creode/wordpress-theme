@@ -1,0 +1,37 @@
+@use '../globals';
+@use '../extenders/focus';
+
+/// This will allow the core buttons block to be integrated into a standard text block without stylistic complications.
+/// This will ensure that the block has the correct button spacing.
+/// This will ensure that button focus state outline colors are inherited from the color property of the parent element.
+/// Mixin to be executed directly within contextual selector.
+///
+///@param {Number} $space-bottom [optional] - The spacing required below the block. Inherits its value from global if not specified.
+///@param {Color} $default-background-color [optional] - The default background color for individual buttons.
+///@param {Color} $default-color [optional] - The default text color for individual buttons.
+@mixin render($space-bottom: globals.$space-bottom, $default-background-color: null, $default-color: null) {
+	.wp-block-buttons {
+		margin-bottom: $space-bottom;
+
+		.wp-block-button {
+			&:has(:focus-visible) {
+				@extend %focus;
+				outline-color: currentcolor;
+				border-radius: 20px;
+			}
+
+			.wp-block-button__link {
+				color: globals.$color-f;
+				outline-color: transparent;
+
+				@if $default-background-color {
+					background-color: $default-background-color;
+				}
+
+				@if $default-color {
+					color: $default-color;
+				}
+			}
+		}
+	}
+}

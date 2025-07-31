@@ -1,0 +1,35 @@
+@use "../globals";
+
+@mixin left($add-padding: true, $minimum: 0px, $outer-width: globals.$maximum-width-outer) {
+	@include bleed('left', $add-padding, $minimum, $outer-width);
+}
+
+@mixin right($add-padding: true, $minimum: 0px, $outer-width: globals.$maximum-width-outer) {
+	@include bleed('right', $add-padding, $minimum, $outer-width);
+}
+
+@mixin bleed($direction, $add-padding, $minimum, $outer-width) {
+	/*
+	 * Manage negative margin for bleed effect.
+	 * Ensure that the margin is no less than the negative gap between maximum widths.
+	 * Calculate margin based on vw units to ensure that the image bleeds to edge of screen.
+	 * Ensure that the margin is negative.
+	 */
+	margin-#{$direction}: clamp(
+		calc(($outer-width - globals.$maximum-width) * -0.5),
+		calc((100vw - globals.$maximum-width ) * -0.5),
+		calc($minimum * -1)
+	);
+
+	@if $add-padding {
+		/*
+		 * Repeat but enure values are positive.
+		 * This will cancel out any effect regarding repositioning on internal content.
+		 */
+		padding-#{$direction}: clamp(
+			$minimum,
+			calc((100vw - globals.$maximum-width) * 0.5),
+			calc(($outer-width - globals.$maximum-width) * 0.5),
+		);
+	}
+}
