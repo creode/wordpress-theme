@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once ABSPATH . 'vendor/autoload.php';
 
 // Require includes.
+require_once __DIR__ . '/includes/data-transfer-objects/all.php';
+require_once __DIR__ . '/includes/abstracts/all.php';
 require_once __DIR__ . '/includes/class-helpers.php';
 require_once __DIR__ . '/includes/class-file-string-replacer.php';
 require_once __DIR__ . '/includes/class-installer.php';

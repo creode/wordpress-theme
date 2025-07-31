@@ -10,6 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
+// Register post types.
+require_once __DIR__ . '/includes/post-types/all.php';
+
+// Register post fields.
+require_once __DIR__ . '/includes/post-fields/all.php';
+
 // Register all menu locations required by this theme.
 require_once __DIR__ . '/includes/register-menu-locations.php';
 
