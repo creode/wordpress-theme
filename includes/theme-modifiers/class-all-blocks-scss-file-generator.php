@@ -10,22 +10,12 @@ namespace Creode_Theme;
 /**
  * Class to generate the SCSS file that invokes render mixins for all block stylesheets.
  */
-final class All_Blocks_Scss_File_Generator {
+final class All_Blocks_Scss_File_Generator extends Theme_Modifier_Base {
 
 	/**
-	 * The name of the theme directory.
-	 *
-	 * @var string
+	 * {@inheritdoc}
 	 */
-	private $theme_directory_name;
-
-	/**
-	 * Generates the _all.scss file within the blocks directory of a theme.
-	 *
-	 * @param string $theme_directory_name The name of the theme directory.
-	 */
-	public function __construct( string $theme_directory_name ) {
-		$this->theme_directory_name = $theme_directory_name;
+	protected function modify_theme() {
 		$this->generate_file();
 	}
 
@@ -86,7 +76,7 @@ final class All_Blocks_Scss_File_Generator {
 
 		foreach ( scandir( $blocks_directory_path ) as $block_directory ) {
 			// Bypass references to parent directories.
-			if ( '.' === substr( $block_directory, 0, 1 ) ) {
+			if ( '.' === substr( $block_directory, 0, 1 ) && is_dir( $blocks_directory_path . '/' . $block_directory ) ) {
 				continue;
 			}
 
@@ -98,7 +88,7 @@ final class All_Blocks_Scss_File_Generator {
 
 			foreach ( scandir( $assets_directory_path ) as $asset ) {
 				// Bypass references to parent directories.
-				if ( '.' === substr( $asset, 0, 1 ) ) {
+				if ( '.' === substr( $asset, 0, 1 ) && is_dir( $assets_directory_path . '/' . $asset ) ) {
 					continue;
 				}
 				// Bypass files that arn't .scss files.

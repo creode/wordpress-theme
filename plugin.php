@@ -17,10 +17,12 @@ require_once ABSPATH . 'vendor/autoload.php';
 
 // Require includes.
 require_once __DIR__ . '/includes/data-transfer-objects/all.php';
+require_once __DIR__ . '/includes/interfaces/all.php';
 require_once __DIR__ . '/includes/abstracts/all.php';
 require_once __DIR__ . '/includes/class-helpers.php';
 require_once __DIR__ . '/includes/class-file-string-replacer.php';
-require_once __DIR__ . '/includes/class-all-blocks-scss-file-generator.php';
+require_once __DIR__ . '/includes/class-theme-modifier-base.php';
+require_once __DIR__ . '/includes/theme-modifiers/all.php';
 require_once __DIR__ . '/includes/class-installer.php';
 require_once __DIR__ . '/includes/class-command-base.php';
 require_once __DIR__ . '/includes/commands/all.php';

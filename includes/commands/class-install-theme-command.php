@@ -29,7 +29,7 @@ class Install_Theme_Command extends Command_Base {
 		$theme_name = isset( $args[0] ) ? $args[0] : null;
 
 		try {
-			$installer = new Installer( $theme_name );
+			$installer = new Installer( $theme_name, new Command_Message_Handler() );
 			$installer->install();
 		} catch ( Exception $e ) {
 			WP_CLI::error( $e->getMessage() );

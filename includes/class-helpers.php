@@ -32,7 +32,7 @@ final class Helpers {
 		// Loop through files in the source directory.
 		foreach ( scandir( $source_directory_path ) as $file ) {
 			// Bypass references to parent directories.
-			if ( '.' === substr( $file, 0, 1 ) ) {
+			if ( '.' === substr( $file, 0, 1 ) && is_dir( $source_directory_path . '/' . $file ) ) {
 				continue;
 			}
 

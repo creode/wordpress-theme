@@ -34,11 +34,20 @@ class Installer {
 	private $theme_label;
 
 	/**
+	 * A message handler to provide any feedback to the user.
+	 *
+	 * @var Message_Handler|null
+	 */
+	private $message_handler;
+
+	/**
 	 * Initializes the object with a theme name.
 	 *
-	 * @param string|null $theme_name (Optional) The theme directory name. If null or unspecified the active theme will be used.
+	 * @param string|null          $theme_name (Optional) The theme directory name. If null or unspecified the active theme will be used.
+	 * @param Message_Handler|null $message_handler (Optional) A message handler to provide any feedback to the user.
 	 */
-	public function __construct( string|null $theme_name = null ) {
+	public function __construct( string|null $theme_name = null, Message_Handler|null $message_handler = null ) {
+		$this->message_handler      = $message_handler;
 		$this->file_string_replacer = File_String_Replacer::get_instance();
 
 		if ( is_null( $theme_name ) ) {
@@ -84,6 +93,8 @@ class Installer {
 	 */
 	public function install() {
 		$this->copy_theme_files();
+		new All_Blocks_Scss_File_Generator( $this->theme_name, $this->message_handler );
+		new Asset_Builder( $this->theme_name, $this->message_handler );
 	}
 
 	/**
