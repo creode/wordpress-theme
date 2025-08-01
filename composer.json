@@ -8,12 +8,15 @@
         }
     ],
     "require": {
-        "composer/installers": "*",
-        "idleberg/vite-manifest": "^1.1"
+        "idleberg/vite-manifest": "^1.1",
+        "creode/mu-plugin-installer": "*"
     },
     "config": {
         "allow-plugins": {
-            "composer/installers": true
+            "creode/mu-plugin-installer": true
         }
+    },
+    "extra": {
+      "wordpress-muplugin-entry": "mu-plugin.php"
     }
 }
