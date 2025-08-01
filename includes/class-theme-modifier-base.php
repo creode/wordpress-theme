@@ -43,4 +43,15 @@ abstract class Theme_Modifier_Base {
 	 * Performs all required modifications.
 	 */
 	abstract protected function modify_theme();
+
+	/**
+	 * Perform modifications to all themes.
+	 *
+	 * @param Message_Handler|null $message_handler (Optional) A message handler to provide any feedback to the user.
+	 */
+	public static function do_for_all_themes( Message_Handler|null $message_handler = null ) {
+		foreach ( Helpers::get_all_theme_names() as $theme_name ) {
+			new static( $theme_name, $message_handler );
+		}
+	}
 }

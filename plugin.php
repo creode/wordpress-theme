@@ -30,6 +30,7 @@ require_once __DIR__ . '/includes/class-asset-enqueue.php';
 
 // Register commands.
 Install_Theme_Command::register();
+Build_Command::register();
 
 // Enqueue assets from parent and child themes.
 Asset_Enqueue::init();

@@ -81,4 +81,29 @@ final class Helpers {
 
 		return $version;
 	}
+
+	/**
+	 * Returns an array of all theme directory names.
+	 *
+	 * @return array Theme directory names.
+	 */
+	public static function get_all_theme_names(): array {
+		$theme_root = get_theme_root();
+		$names      = array();
+		foreach ( scandir( $theme_root ) as $file ) {
+			// Bypass references to parent directories.
+			if ( '.' === substr( $file, 0, 1 ) && is_dir( $theme_root . '/' . $file ) ) {
+				continue;
+			}
+
+			// Bypass if file is not a directory.
+			if ( ! is_dir( $theme_root . '/' . $file ) ) {
+				continue;
+			}
+
+			array_push( $names, $file );
+		}
+
+		return $names;
+	}
 }
