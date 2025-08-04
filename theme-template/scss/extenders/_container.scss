@@ -1,0 +1,19 @@
+@use '../globals';
+
+%container__outer-wrapper {
+	max-width: globals.$maximum-width-outer;
+	margin: 0 auto;
+}
+
+%container__wrapper {
+	padding: globals.$space-vertical globals.$space-horizontal;
+}
+
+%container__wrapper--reduce-bottom-space {
+	padding-bottom: 0;
+}
+
+%container__inner {
+	max-width: globals.$maximum-width;
+	margin: 0 auto;
+}
