@@ -1,5 +1,5 @@
-@use "globals";
-@use "extenders/focus";
+@use 'globals';
+@use 'extenders/focus';
 
 @mixin render {
 	* {
