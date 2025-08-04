@@ -23,7 +23,19 @@ class Build_Command extends Command_Base {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * Compiles front-end assets for all installed themes.
+	 *
+	 * This command will build and compile assets (such as SCSS and JavaScript)
+	 * for all themes installed on the site. This is especially useful for multisite
+	 * networks or sites using parent/child theme structures, ensuring all relevant
+	 * theme assets are up to date.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     # Build assets for all installed themes
+	 *     $ wp creode-theme:build
+	 *
+	 * @param array $args Not used.
 	 */
 	public function __invoke( array $args = array() ) {
 		$message_handler = new Command_Message_Handler();
