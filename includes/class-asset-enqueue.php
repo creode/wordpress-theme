@@ -33,6 +33,15 @@ final class Asset_Enqueue {
 	}
 
 	/**
+	 * Get the singleton instance.
+	 *
+	 * @return Asset_Enqueue|null The singleton instance or null if uninitialized.
+	 */
+	public static function get_instance(): Asset_Enqueue|null {
+		return self::$instance;
+	}
+
+	/**
 	 * An array of Manifest objects.
 	 *
 	 * @var Manifest[]
@@ -159,5 +168,37 @@ final class Asset_Enqueue {
 		}
 
 		return $styles[0];
+	}
+
+	/**
+	 * Registers a script for enqueuing.
+	 *
+	 * @param string     $handle The scripts handle name.
+	 * @param string     $path The path to the script relative to the theme root directory (No proceeding forward slash).
+	 * @param array      $dependencies (Optional) The scripts dependencies. Defaults to an empty array.
+	 * @param bool|array $in_footer (Optional) Whether to enqueue the script in the footer. Defaults to true.
+	 */
+	public function register_vite_script( string $handle, string $path, array $dependencies = array(), $in_footer = true ) {
+		foreach ( $this->manifests as $manifest ) {
+			$entry_point = $manifest->getEntrypoint( $path );
+			if ( empty( $entry_point ) ) {
+				continue;
+			}
+			if ( empty( $entry_point['url'] ) ) {
+				continue;
+			}
+			if ( empty( $entry_point['hash'] ) ) {
+				continue;
+			}
+
+			wp_register_script(
+				$handle,
+				$entry_point['url'],
+				$dependencies,
+				$entry_point['hash'],
+				$in_footer
+			);
+			break;
+		}
 	}
 }
