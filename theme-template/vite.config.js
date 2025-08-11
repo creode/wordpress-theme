@@ -9,6 +9,9 @@ export default defineConfig(
 		return {
 			// Increase assetsInlineLimit (in bytes) to allow for larger assets to be inlined
 			// If they are larger they get put in /dist with a relative path which doesn't work in the iframe block preview.
+			esbuild: {
+				minifyIdentifiers: false
+			},
 			assetsInlineLimit: 12000,
 			base: '/wp-content/themes/:THEME_NAME/dist',
 			build: {
@@ -21,7 +24,8 @@ export default defineConfig(
 						admin: resolve(__dirname, 'vite-entry-points/admin.js'),
 					}
 				},
-				outDir: 'dist'
+				outDir: 'dist',
+				minify: 'esbuild'
 			},
 			server: {
 				// respond to all network requests (same as '0.0.0.0')
