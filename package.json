@@ -1,0 +1,15 @@
+{
+  "name": "creode-wordpress-theme-framework",
+  "version": "1.0.0",
+  "description": "Creode's WordPress Theme Framework",
+  "author": "Creode",
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  }
+}

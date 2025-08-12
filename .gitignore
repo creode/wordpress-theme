@@ -1,2 +1,7 @@
+# Composer Dependencies
 /vendor
 /composer.lock
+
+# Node Dependencies
+/package-lock.json
+node_modules
