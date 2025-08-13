@@ -2,6 +2,7 @@
 /**
  * Plugin Name: WordPress Theme
  * Description: A theme installation and development framework.
+ * Plugin URI: https://theme-framework.creode.dev
  * Version: :PLUGIN_VERSION:
  * Author: Creode
  * Author URI: https://www.creode.co.uk/
