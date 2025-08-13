@@ -36,8 +36,9 @@ class Build_Command extends Command_Base {
 	 *     $ wp creode-theme:build
 	 *
 	 * @param array $args Not used.
+	 * @param array $assoc_args Not used.
 	 */
-	public function __invoke( array $args = array() ) {
+	public function __invoke( array $args = array(), array $assoc_args = array() ) {
 		$message_handler = new Command_Message_Handler();
 
 		try {
