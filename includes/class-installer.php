@@ -90,21 +90,25 @@ class Installer {
 
 	/**
 	 * Installs theme files.
+	 *
+	 * @param bool $force (Optional) Whether theme files will be overidden. If omitted, theme files will only be created if they do not exist. Defaults to false if not specified.
 	 */
-	public function install() {
-		$this->copy_theme_files();
+	public function install( bool $force = false ) {
+		$this->copy_theme_files( $force );
 		new All_Blocks_Scss_File_Generator( $this->theme_name, $this->message_handler );
 		new Asset_Builder( $this->theme_name, $this->message_handler );
 	}
 
 	/**
 	 * Copies theme files from the theme-template directory into the specified location.
+	 *
+	 * @param bool $force (Optional) Whether theme files will be overidden. If omitted, theme files will only be created if they do not exist. Defaults to false if not specified.
 	 */
-	private function copy_theme_files() {
+	private function copy_theme_files( bool $force = false ) {
 		Helpers::copy_directory(
 			__DIR__ . '/../theme-template',
 			get_theme_root() . '/' . $this->theme_name,
-			true,
+			! $force,
 			function ( string $source_file_path, $destination_file_path ) {
 				$this->file_string_replacer->replace( $destination_file_path );
 			}

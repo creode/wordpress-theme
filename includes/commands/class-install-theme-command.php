@@ -36,6 +36,10 @@ class Install_Theme_Command extends Command_Base {
 	 * [<theme-directory>]
 	 * : The directory name of the theme to install files to.
 	 *   If omitted, the active theme will be used.
+	 * [--force]
+	 * : Whether theme files will be overidden.
+	 *   If omitted, theme files will only be created if they do not exist.
+	 *   Defaults to false if not specified.
 	 *
 	 * ## EXAMPLES
 	 *
@@ -46,13 +50,14 @@ class Install_Theme_Command extends Command_Base {
 	 *     $ wp creode-theme:install my-child-theme
 	 *
 	 * @param array $args Optional. Command arguments. [<theme-directory>].
+	 * @param array $assoc_args Optional. Associative array of command options. ['force' => bool].
 	 */
-	public function __invoke( array $args = array() ) {
+	public function __invoke( array $args = array(), array $assoc_args = array() ) {
 		$theme_name = isset( $args[0] ) ? $args[0] : null;
 
 		try {
 			$installer = new Installer( $theme_name, new Command_Message_Handler() );
-			$installer->install();
+			$installer->install( ! empty( $assoc_args['force'] ) );
 		} catch ( Exception $e ) {
 			WP_CLI::error( $e->getMessage() );
 		}

@@ -34,9 +34,10 @@ abstract class Command_Base {
 	/**
 	 * This class must be invocable.
 	 *
-	 * @param array $args An array of arguments might be provided.
+	 * @param array $args Optional. Command arguments.
+	 * @param array $assoc_args Optional. Associative array of command options.
 	 */
-	abstract public function __invoke( array $args = array() );
+	abstract public function __invoke( array $args = array(), array $assoc_args = array() );
 
 	/**
 	 * Registers this command.
