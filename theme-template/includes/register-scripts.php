@@ -20,3 +20,16 @@ add_action(
 		wp_enqueue_script( 'example_script' );
 	}
 );
+
+/**
+ * Enqueues admin scripts.
+ */
+add_action(
+	'admin_enqueue_scripts',
+	function () {
+		$asset_enqueue = Asset_Enqueue::get_instance();
+
+		$asset_enqueue->register_vite_script( 'block_styles', 'js/admin/block-styles.js', array( 'block_style_modifier' ) );
+		wp_enqueue_script( 'block_styles' );
+	}
+);

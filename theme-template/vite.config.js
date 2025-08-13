@@ -20,6 +20,7 @@ export default defineConfig(
 				rollupOptions: {
 					// overwrite default .html entry
 					input: {
+						blockStyles: resolve(__dirname, 'js/admin/block-styles.js'),
 						main: resolve(__dirname, 'vite-entry-points/main.js'),
 						admin: resolve(__dirname, 'vite-entry-points/admin.js'),
 					}
