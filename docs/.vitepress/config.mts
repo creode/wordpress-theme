@@ -21,6 +21,35 @@ export default defineConfig({
         ]
       },
       {
+        text: 'Framework',
+        items: [
+          {
+            text: 'PHP Libraries',
+            link: '/php-libraries',
+            items: [
+              {
+                text: 'Custom Post Types',
+                link: '/php-libraries/custom-post-types'
+              },
+              {
+                text: 'Post Fields',
+                link: '/php-libraries/post-fields'
+              }
+            ]
+          },
+          {
+            text: 'JavaScript Libraries',
+            link: '/js-libraries',
+            items: [
+              {
+                text: 'Block Style Modifier',
+                link: '/js-libraries/block-style-modifier'
+              },
+            ]
+          }
+        ]
+      },
+      {
         text: 'Commands',
         items: [
           { text: 'Commands', link: '/commands' }
