@@ -27,6 +27,7 @@ require_once __DIR__ . '/includes/class-installer.php';
 require_once __DIR__ . '/includes/class-command-base.php';
 require_once __DIR__ . '/includes/commands/all.php';
 require_once __DIR__ . '/includes/class-asset-enqueue.php';
+require_once __DIR__ . '/includes/register-js-libraries.php';
 
 // Register commands.
 Install_Theme_Command::register();
