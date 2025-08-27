@@ -188,6 +188,20 @@ final class Asset_Enqueue {
 			5
 		);
 
+		add_action(
+			'admin_enqueue_scripts',
+			function () use ( $handle, $src, $dependencies, $version, $media ) {
+				wp_register_style(
+					$handle,
+					$src,
+					$dependencies,
+					$version,
+					$media
+				);
+			},
+			5
+		);
+
 		array_push( $this->stylesheet_dependencies, $handle );
 	}
 
