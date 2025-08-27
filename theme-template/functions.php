@@ -28,3 +28,6 @@ require_once __DIR__ . '/blocks/all.php';
 
 // Register any scripts needed.
 require_once __DIR__ . '/includes/register-scripts.php';
+
+// Register any stylesheet depandancies.
+require_once __DIR__ . '/includes/register-stylesheet-dependencies.php';

@@ -22,6 +22,13 @@ final class Asset_Enqueue {
 	private static $instance = null;
 
 	/**
+	 * Array of stylesheet handles to be used as dependancies for enqueued stylesheets.
+	 *
+	 * @var string[]
+	 */
+	private $stylesheet_dependencies = array();
+
+	/**
 	 * Initializes the process.
 	 */
 	public static function init() {
@@ -149,8 +156,39 @@ final class Asset_Enqueue {
 			}
 
 			$asset = $manifest->getManifest()[ $entrypoint ];
-			wp_enqueue_style( $asset['name'], $style['url'], array(), $style['hash'] );
+			wp_enqueue_style( $asset['name'], $style['url'], $this->stylesheet_dependencies, $style['hash'] );
 		}
+	}
+
+	/**
+	 * Add a dependancy to be used for main stylesheets.
+	 *
+	 * @param string $handle A stylesheet handle.
+	 * @param string $src A stylesheet source.
+	 * @param array  $dependencies (Optional) an optional array of stylesheet handles.
+	 * @param string $version (Optional) String specifying stylesheet version number.
+	 * @param string $media (Optional) The media for which this stylesheet has been defined. Default 'all'. Accepts media types like 'all', 'print' and 'screen', or media queries like '(orientation: portrait)' and '(max-width: 640px)'.
+	 */
+	public function add_stylesheet_dependency( string $handle, string $src, array $dependencies = array(), string $version = '1', string $media = 'all' ) {
+		if ( in_array( $handle, $this->stylesheet_dependencies, true ) ) {
+			return;
+		}
+
+		add_action(
+			'wp_enqueue_scripts',
+			function () use ( $handle, $src, $dependencies, $version, $media ) {
+				wp_register_style(
+					$handle,
+					$src,
+					$dependencies,
+					$version,
+					$media
+				);
+			},
+			5
+		);
+
+		array_push( $this->stylesheet_dependencies, $handle );
 	}
 
 	/**
