@@ -29,6 +29,13 @@ final class Asset_Enqueue {
 	private $stylesheet_dependencies = array();
 
 	/**
+	 * Array of stylesheet URLs to be used as dependancies for enqueued stylesheets.
+	 *
+	 * @var string[]
+	 */
+	private $stylesheet_dependency_sources = array();
+
+	/**
 	 * Initializes the process.
 	 */
 	public static function init() {
@@ -131,15 +138,24 @@ final class Asset_Enqueue {
 	 * Enqueues a site editor stylesheet for all manifests.
 	 */
 	private function enqueue_editor_stylesheets() {
-		foreach ( $this->manifests as $manifest ) {
-			$style = $this->get_manifest_style( $manifest, 'vite-entry-points/admin.js' );
+		add_action(
+			'init',
+			function () {
+				foreach ( $this->stylesheet_dependency_sources as $source ) {
+					add_editor_style( $source );
+				}
 
-			if ( is_null( $style ) ) {
-				continue;
+				foreach ( $this->manifests as $manifest ) {
+					$style = $this->get_manifest_style( $manifest, 'vite-entry-points/admin.js' );
+
+					if ( is_null( $style ) ) {
+						continue;
+					}
+
+					add_editor_style( $style['url'] );
+				}
 			}
-
-			add_editor_style( $style['url'] );
-		}
+		);
 	}
 
 	/**
@@ -203,6 +219,7 @@ final class Asset_Enqueue {
 		);
 
 		array_push( $this->stylesheet_dependencies, $handle );
+		array_push( $this->stylesheet_dependency_sources, $src );
 	}
 
 	/**
