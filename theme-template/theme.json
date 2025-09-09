@@ -37,6 +37,28 @@
 					"name": "Standard",
 					"slug": "standard"
 				}
+			],
+			"fontSizes": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "0.8125rem"
+				},
+				{
+					"name": "Medium",
+					"slug": "medium",
+					"size": "1.25rem"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "2.25rem"
+				},
+				{
+					"name": "Extra Large",
+					"slug": "x-large",
+					"size": "2.625rem"
+				}
 			]
 		},
 		"shadow": {
