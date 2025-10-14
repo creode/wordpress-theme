@@ -106,4 +106,34 @@ final class Helpers {
 
 		return $names;
 	}
+
+	/**
+	 * Creates a block pattern if it doesn't already exist.
+	 *
+	 * @param string $slug    The slug for the block pattern.
+	 * @param string $name    The name/title for the block pattern.
+	 * @param string $content The HTML content for the block pattern.
+	 *
+	 * @return void
+	 */
+	public static function make_pattern( string $slug, string $name, string $content ): void {
+		// Check if a block pattern with this slug already exists.
+		$existing_pattern = get_page_by_path( $slug, OBJECT, 'wp_block' );
+
+		// If pattern exists, exit early.
+		if ( $existing_pattern ) {
+			return;
+		}
+
+		// Create the new block pattern.
+		wp_insert_post(
+			array(
+				'post_title'   => $name,
+				'post_name'    => $slug,
+				'post_content' => $content,
+				'post_status'  => 'publish',
+				'post_type'    => 'wp_block',
+			)
+		);
+	}
 }
