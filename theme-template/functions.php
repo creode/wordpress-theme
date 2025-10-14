@@ -26,6 +26,9 @@ require_once __DIR__ . '/includes/register-brand-block-category.php';
 // Load and initialize blocks.
 require_once __DIR__ . '/blocks/all.php';
 
+// Register any patterns that are referenced by slug in template files.
+require_once __DIR__ . '/includes/register-patterns.php';
+
 // Register any scripts needed.
 require_once __DIR__ . '/includes/register-scripts.php';
 
