@@ -43,6 +43,11 @@ export default defineConfig(
 					host: DDEV_HOSTNAME,
 				}
 			},
+			resolve: {
+				alias: {
+					'@block-library': '/../../mu-plugins/wordpress-blocks/blocks',
+				},
+			},
 		}
 	}
 );
