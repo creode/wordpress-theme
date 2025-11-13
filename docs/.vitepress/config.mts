@@ -45,6 +45,10 @@ export default defineConfig({
                 text: 'Block Style Modifier',
                 link: '/js-libraries/block-style-modifier'
               },
+              {
+                text: 'Match Height Library',
+                link: '/js-libraries/match-height'
+              },
             ]
           }
         ]
