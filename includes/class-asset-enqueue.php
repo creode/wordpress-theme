@@ -249,14 +249,11 @@ final class Asset_Enqueue {
 	 */
 	public function register_vite_script( string $handle, string $path, array $dependencies = array(), $in_footer = true ) {
 		foreach ( $this->manifests as $manifest ) {
-			$entry_point = $manifest->getEntrypoint( $path );
+			$entry_point = $manifest->getEntrypoint( $path, false );
 			if ( empty( $entry_point ) ) {
 				continue;
 			}
 			if ( empty( $entry_point['url'] ) ) {
-				continue;
-			}
-			if ( empty( $entry_point['hash'] ) ) {
 				continue;
 			}
 
@@ -264,7 +261,7 @@ final class Asset_Enqueue {
 				$handle,
 				$entry_point['url'],
 				$dependencies,
-				$entry_point['hash'],
+				'void',
 				$in_footer
 			);
 			break;
