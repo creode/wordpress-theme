@@ -2,11 +2,15 @@
     "name": "creode/wordpress-theme",
     "description": "A theme installation and development framework.",
     "type": "wordpress-muplugin",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Creode Limited"
         }
     ],
+    "suggest": {
+        "creode-mosaic/theme": "Replaces this plugin using the Mosaic name."
+    },
     "require": {
         "idleberg/vite-manifest": "^1.1",
         "creode/mu-plugin-installer": "*"
